@@ -32,3 +32,15 @@ Changed: the first implementation was one long handler, and the model function `
 Rejected: the assistant kept `src/index.ts` as a re-export "entry point" and wrote the handlers as factory functions. Nothing imports this app as a package, so I removed `index.ts`; the handlers became a `PlanController` class so it takes its dependencies the same way as `PlanService`.
 
 The endpoint makes no model call. The model provider, model, spending cap and cost per plan are still pending the team's provider choice.
+
+## 2026-11-24 — PA#2 contract tests (Role C)
+
+Tool: Claude Code (Claude Opus 5.5).
+Asked for: contract tests for `POST /v1/plans/{planId}/save` written from `docs/contract/save-plan.md` alone, without reading `src/`, and checked against criterion 6 of the PA#2 rubric.
+Kept: one `expectProblem` helper that checks the status, `Content-Type: application/problem+json`, `type` and `title` of every error, so no test checks the status code alone; a fresh `createApp()` per test with the seed data of contract section 6; tests that reach the server only through HTTP (`app.inject`), never its stores.
+Changed: the first draft asserted the exact `detail` text of the 403 and 404 responses. The contract says clients decide from `type`, never from `detail`, so those assertions over-specified the contract and were removed; the 404 tests compare a hidden plan with a missing one instead, which is what the contract requires. A test that only repeated the `type` check already inside `expectProblem` was removed too.
+Changed: where the contract does not name a pointer, the tests assume one and say so: `/stops` or `/stops/{i}/items` for an array of the wrong length, and any pointer under `/stops/{i}` for a stop that starts before the previous one ends.
+Rejected: a green run as proof that the tests bite. I deleted the visibility check (`canSee`, step 4) in `plan.service.ts` by hand: 6 tests went red with `expected 403 to be 404`, the leak the contract forbids. Six other one-line breaks (ownership check, key-reused check, `Idempotent-Replayed` header, validator, problem media type, `WWW-Authenticate`) each turned at least two tests red. The code was restored before committing; no file in `src/` is part of this change.
+Rejected: deleting the `canSee` line as the deliberate break for PA2.md. It also leaves `canSee` and `inTripGroup` unused, so `npm run lint` fails with two errors and the red CI would not show that the contract tests caught it. The break PR must change only `src/` and keep lint green.
+
+The tests make no model calls. The model provider, model, spending cap and cost per plan are still pending the team's provider choice.
