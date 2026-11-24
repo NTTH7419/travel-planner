@@ -1,6 +1,6 @@
 # Save plan API — contract, version 1
 
-CSC13114 · AI Travel Planner · PA#2 · draft 23 Nov 2026
+CSC13114 · AI Travel Planner · PA#2 · frozen 24 Nov 2026
 
 This file is the specification for `POST /v1/plans/{planId}/save`, the step
 that turns a member's draft schedule into the schedule the whole group sees.
