@@ -3,6 +3,12 @@
 The PA#2 harness for the AI Travel Planner project. The endpoint contract and
 contract tests will be added by Roles B and C.
 
+## Group member
+
+- 23127303 - Hồ Tấn Quốc
+- 23127499 - Lê Huy Toàn
+- 23127510 - Phùng Ngọc Tuấn
+
 ## Development
 
 Install Node.js 24 or newer. From a fresh clone, run:

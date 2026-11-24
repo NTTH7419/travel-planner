@@ -1,4 +1,5 @@
 # SELF_ASSESSMENT_REPORT.md — template
+
 Every submission contains this file, at the root of the zip. Score yourself against the rubric of that assignment, at `project-docs`, criterion by criterion.
 The total you write here goes into the name of your zip: `23127303-23127499-23127510_<total>.zip` for group work.
 
@@ -41,16 +42,17 @@ had already decided not to build, but never wrote down.
 - Your self-score does not set your mark — but an inaccurate one costs you. See Honesty adjustment below, and in the rubric of every assignment.
 
 ## Honesty adjustment
+
 Your self-assessment is compared with the mark you actually earn. The gap is your total − the mark, on the same 100-point scale.
 
-| Gap | Adjustment |
-|-----|------------|
-| within ±10 | none — this is normal calibration |
-| +11 to +20 | −3 |
-| +21 to +30 | −6 |
-| more than +30 | −10 |
-| −21 or worse | −3 — read the rubric before you score yourself down |
-| no SELF_ASSESSMENT_REPORT.md | −10, and the file-name total is ignored |
+| Gap                          | Adjustment                                            |
+| ---------------------------- | ----------------------------------------------------- |
+| within ±10                  | none — this is normal calibration                    |
+| +11 to +20                   | −3                                                   |
+| +21 to +30                   | −6                                                   |
+| more than +30                | −10                                                  |
+| −21 or worse                | −3 — read the rubric before you score yourself down |
+| no SELF_ASSESSMENT_REPORT.md | −10, and the file-name total is ignored              |
 
 A criterion you claim with no evidence line counts as claimed-and-not-done for this comparison.
 The adjustment never takes a submission below 0.
