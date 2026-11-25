@@ -19,8 +19,11 @@ Editing one **to make a failing check pass** is always "never".
 - **Claude Code:** `.claude/settings.json` sets the same tiers as `allow`,
   `ask` and `deny` rules, so the tool itself asks or refuses. Personal
   overrides go in `.claude/settings.local.json`, which git ignores.
-- **Codex** and any other tool: the tiers above and `AGENTS.md` are the rules;
-  the person running the tool approves every step in the "ask first" tier.
+- **Codex:** a trusted project loads [`.codex/rules/pa2.rules`](../.codex/rules/pa2.rules)
+  for common command forms. The file does not enforce file reads or edits.
+  Follow the tiers above and `AGENTS.md` even when no rule or approval prompt
+  is triggered.
+- **Other tools:** follow the tiers above and `AGENTS.md`.
 - **GitHub:** `main` is protected, so a push to `main` or a force-push is
   refused for everyone, assistant or not
   ([settings](evidence/branch-protection.jpeg)).

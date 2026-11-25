@@ -10,7 +10,7 @@
     "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" --no-error-on-unmatched-pattern",
     "format:check": "prettier --check src tests eslint.config.mjs package.json tsconfig.json README.md .github/workflows/ci.yml",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
