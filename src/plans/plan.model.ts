@@ -40,7 +40,7 @@ export function canSee(
   inTripGroup: boolean,
 ): boolean {
   if (plan.ownerId === userId) return true;
-  return plan.status === "saved" && inTripGroup;
+  return inTripGroup;
 }
 
 // Whoever may edit a plan may save it. Until editing together exists, only
