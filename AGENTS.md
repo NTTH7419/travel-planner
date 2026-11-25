@@ -28,8 +28,7 @@ npm test
 - Every 4xx and 5xx is RFC 9457 problem details sent through `sendProblem` in
   `src/shared/problems.ts`, with a `type` the contract lists.
 - `docs/contract/` is the specification. If the code and the contract
-  disagree, the code is wrong. Change a contract only in its own commit that
-  says why.
+  disagree, the code is wrong. Do not change the contract unless the task explicitly requires it. Any contract change must be isolated from implementation changes and include a clear explanation of why.
 - Identify the caller from `Authorization: Bearer <token>`, never from a header
   the client fills in such as `X-User-Id`. The first contract draft did; see
   [AI-LOG, Role B](AI-LOG.md#2026-11-23--pa2-contract-and-endpoint-role-b).
