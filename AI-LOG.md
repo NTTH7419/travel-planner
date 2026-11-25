@@ -47,3 +47,19 @@
   - deleting the `canSee` line as the deliberate break for PA2.md. It also leaves `canSee` and `inTripGroup` unused, so `npm run lint` fails with two errors and the red CI would not show that the contract tests caught it. The break PR must change only `src/` and keep lint green.
 
 > The tests make no model calls. The model provider, model, spending cap and cost per plan are still pending the team's provider choice.
+
+## 2026-11-25 — PA#2 deliberate break, rules file, permissions and secrets (Role C)
+
+- **Tool:** Claude Code (Claude Opus 5.5).
+- **Asked for:** a deliberate contract break that only the contract tests catch; a short rules file with the four sections the rubric names; the assistant's permissions in three tiers, `.env.example`, and a scan of the history for secrets.
+- **Kept:**
+  - the break in [PR #5](https://github.com/NTTH7419/travel-planner/pull/5): one line in `canSee` lets a group member see a draft. Before pushing I ran the checks locally: lint, format and type check passed, 3 of 74 tests failed. CI showed the same: only the required `Tests` job went red ([run](https://github.com/NTTH7419/travel-planner/actions/runs/45540633293)). The PR was closed without merging.
+  - `AGENTS.md` as the one rules file, with `CLAUDE.md` importing it, because the team uses both Codex and Claude Code. Four of its lines trace to something that went wrong: the `X-User-Id` header, the 404 that leaked a plan, the tests that asserted `detail`, and the CRLF clone.
+  - the gitleaks scan (v8.30.1, in Docker, repository mounted read-only): no leaks in the 20 non-merge commits of every branch nor in the 54 files of the working tree.
+- **Changed:**
+  - the assistant drafted `AGENTS.md` (commit `09ac75c`). Its contract rule only said to change the contract in its own commit. I rewrote it (commit `e8a3806`): the contract is not changed unless the task explicitly requires it, and a contract change stays apart from implementation changes, with the reason written down.
+  - the assistant first suggested breaking the code by deleting the ownership check. That leaves a function unused and would turn the `Lint` job red as well, so the break changes what `canSee` returns instead.
+  - the assistant added a README line on how to run the server with `npx tsx src/server.ts`. `tsx` is not installed and the server does not read `.env`, so the line was removed before committing.
+- **Rejected:** Codex rules (`.codex/rules/`, `.codex/config.toml`) that the assistant wrote and checked only with a simulation, because Codex is not installed on this machine. Role A uses Codex and can test them with `codex execpolicy check`, so I left them to Role A. `docs/permissions.md` says Codex users approve every "ask first" step themselves.
+
+> No model call was made. The model spending cap is still not set because the team has not chosen a provider; the README says so.
