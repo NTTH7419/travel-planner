@@ -21,8 +21,9 @@ npm run typecheck
 npm test
 ```
 
-The four checks run unchanged in CI. `npm test` is ready for the contract tests;
-the empty test suite is temporary until Role C adds them.
+The four checks run unchanged in CI. `npm test` runs the contract tests for
+`POST /v1/plans/{planId}/save` in `tests/`, written from
+[the contract](docs/contract/save-plan.md).
 
 ## CI and branch protection
 
@@ -30,7 +31,18 @@ The workflow runs the four checks on every pull request, pushes to `main`, and
 the submission tag `pa2`. Require all four named CI jobs on `main` and require
 a pull request before merging. Keep direct pushes and force pushes blocked.
 
+## Assistant rules, permissions and secrets
+
+- Rules for AI assistants: [AGENTS.md](AGENTS.md) (Claude Code reads it through
+  [CLAUDE.md](CLAUDE.md)).
+- What an assistant may do, in three tiers, and the secret scan:
+  [docs/permissions.md](docs/permissions.md). Claude Code enforces the tiers
+  through [.claude/settings.json](.claude/settings.json).
+- Environment variables: [.env.example](.env.example) lists every one, without
+  values. `.env` is ignored by git.
+
 ## Model spending cap
 
-Role C will record the provider, model, and spending cap after the team's model
-API key is configured. No model API key is needed for PA#2 checks.
+Not set yet: the team has not chosen a model provider, and PA#2 makes no model
+call, so no model API key exists. When the key is created, record here the
+provider, the model, and the spending cap set in the provider's dashboard.
