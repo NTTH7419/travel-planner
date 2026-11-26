@@ -31,15 +31,15 @@ npm test
   disagree, the code is wrong. Do not change the contract unless the task explicitly requires it. Any contract change must be isolated from implementation changes and include a clear explanation of why.
 - Identify the caller from `Authorization: Bearer <token>`, never from a header
   the client fills in such as `X-User-Id`. The first contract draft did; see
-  [AI-LOG, Role B](AI-LOG.md#2026-11-23--pa2-contract-and-endpoint-role-b).
+  [AI-LOG](AI-LOG.md#2026-11-23--pa2-contract-and-endpoint).
 - A resource the caller cannot see answers exactly like one that does not
   exist: same status, `type`, `title` and `detail`. "No plan 1 for this user"
   once leaked that a plan existed; see
-  [AI-LOG, Role B](AI-LOG.md#2026-11-23--pa2-contract-and-endpoint-role-b).
+  [AI-LOG](AI-LOG.md#2026-11-23--pa2-contract-and-endpoint).
 - Contract tests come from the contract, not from `src/`. They call the app
   only through `createApp()` and `app.inject`, and check `type` and
   `Content-Type`, never the status alone or the `detail` text; see
-  [AI-LOG, Role C](AI-LOG.md#2026-11-24--pa2-contract-tests-role-c).
+  [AI-LOG](AI-LOG.md#2026-11-24--pa2-contract-tests).
 - Text files stay LF through `.gitattributes`. A fresh Windows clone turned
   them into CRLF and failed `format:check` (commit `2f42cf9`).
 
