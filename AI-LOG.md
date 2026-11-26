@@ -10,7 +10,7 @@
 
 > The model provider, model, spending cap, and cost per plan are pending the team's provider choice; no model call is part of this harness.
 
-## 2026-11-21 — branch protection and PR evidence
+## 2026-11-21 — PA#2 branch protection and PR evidence
 
 - **Tool:** OpenAI Codex.
 - **Asked for:** protect `main` and demonstrate a PR blocked by a real CI failure, then fixed on the same PR.
@@ -20,7 +20,7 @@
 
 > The product's model provider, model, spending cap, and cost per plan are not selected yet. This harness made no model calls; add those details when the team chooses the provider.
 
-## 2026-11-23 — PA#2 contract and endpoint (Role B)
+## 2026-11-23 — PA#2 contract and endpoint
 
 - **Tool:** Claude Code (Claude Opus 5.5).
 - **Asked for:** a contract for `POST /v1/plans/{planId}/save` in the same sections as my IA#3 `CONTRACT.md`, then a minimal in-memory endpoint that follows it.
@@ -34,7 +34,7 @@
 
 > The endpoint makes no model call. The model provider, model, spending cap and cost per plan are still pending the team's provider choice.
 
-## 2026-11-24 — PA#2 contract tests (Role C)
+## 2026-11-24 — PA#2 contract tests
 
 - **Tool:** Claude Code (Claude Opus 5.5).
 - **Asked for:** contract tests for `POST /v1/plans/{planId}/save` written from `docs/contract/save-plan.md` alone, without reading `src/`, and checked against criterion 6 of the PA#2 rubric.
@@ -48,7 +48,7 @@
 
 > The tests make no model calls. The model provider, model, spending cap and cost per plan are still pending the team's provider choice.
 
-## 2026-11-25 — PA#2 deliberate break, rules file, permissions and secrets (Role C)
+## 2026-11-25 — PA#2 deliberate break, rules file, permissions and secrets
 
 - **Tool:** Claude Code (Claude Opus 5.5).
 - **Asked for:** a deliberate contract break that only the contract tests catch; a short rules file with the four sections the rubric names; the assistant's permissions in three tiers, `.env.example`, and a scan of the history for secrets.
@@ -63,3 +63,13 @@
 - **Rejected:** Codex rules (`.codex/rules/`, `.codex/config.toml`) that the assistant wrote and checked only with a simulation, because Codex is not installed on this machine. Role A uses Codex and can test them with `codex execpolicy check`, so I left them to Role A. `docs/permissions.md` says Codex users approve every "ask first" step themselves.
 
 > No model call was made. The model spending cap is still not set because the team has not chosen a provider; the README says so.
+
+## 2026-11-26 — PA#2 strict test gate and Codex command rules
+
+- **Tool:** ChatGPT (Dot) for the patch and local verification; Codex for `execpolicy check` and PR handoff.
+- **Asked for:** remove `--passWithNoTests`, document the Codex setup in `README.md`, and add executable rules under `.codex/rules/`.
+- **Kept:** the existing CI workflow, contract, test files, and lockfile. Lint, format, and type checks passed locally, and `npm test` passed all 74 existing tests.
+- **Changed:** replaced `vitest run --passWithNoTests` with `vitest run`. The GitHub connector returned 403 on write, so the assistant exported the verified commit `dc61e84` as a Git bundle. The same commit was pushed from a session with GitHub access and merged in [PR #8](https://github.com/NTTH7419/travel-planner/pull/8).
+- **Rejected:** treating a green run on the populated suite as proof that the empty-suite gate works. A separate run with no matching tests returned exit code 1. We also checked the rules with `codex execpolicy check`: dependency changes, commits, and ordinary branch pushes prompted for approval; the tested direct-to-`main` and force-push commands were forbidden. The README and permissions doc distinguish these command rules from sandbox restrictions and GitHub branch protection.
+
+> No model call was made by the app for this work. The provider and spending cap are still unset.
