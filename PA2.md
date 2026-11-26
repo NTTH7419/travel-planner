@@ -6,9 +6,9 @@
 | Protected `main` settings           | [Branch-protection screenshot](docs/evidence/branch-protection.jpeg)                                                                                                                                                                                                                                    |
 | Pull request blocked by a red check | [PR #1](https://github.com/NTTH7419/travel-planner/pull/1), [failing commit](https://github.com/NTTH7419/travel-planner/commit/1505ae02c12b50129c52d3cecf20cc3e8b6d7624), and [red Lint run](https://github.com/NTTH7419/travel-planner/actions/runs/44913877745)                                       |
 | Same pull request after the fix     | [PR #1](https://github.com/NTTH7419/travel-planner/pull/1), [fixing commit](https://github.com/NTTH7419/travel-planner/commit/a6f9b1f764f436884caf7d5eb7dd7a9d5ef86932), and [green CI run](https://github.com/NTTH7419/travel-planner/actions/runs/44913976220)                                        |
-| CI run for the `pa2` tag            | **Not available yet.** The tag has not been created; add the actual tag-triggered CI run link after the final submission commit is merged and tagged.                                                                                                                                                   |
+| CI run for the `pa2` tag            | [CI runs for the `pa2` tag](https://github.com/NTTH7419/travel-planner/actions/workflows/ci.yml?query=branch%3Apa2): all four jobs on the tagged commit                                                                                                                                                 |
 | Deliberate contract break           | [PR #5](https://github.com/NTTH7419/travel-planner/pull/5), [breaking commit](https://github.com/NTTH7419/travel-planner/commit/cb96e7e03f7d7f6bf95867825d2c68d5a249294b), and [red Tests run](https://github.com/NTTH7419/travel-planner/actions/runs/45540633293). The PR was closed without merging. |
 
-The [quality-gate record](docs/evidence/quality-gate.md) explains the red-to-green
-CI demonstration. Before submission, replace the pending tag row with the actual
-run URL and verify that all four jobs pass for the tagged commit.
+The [quality-gate record](docs/evidence/quality-gate.md) explains the
+red-to-green CI demonstration. The tag row links to the workflow's runs
+filtered by the `pa2` tag, so the link is valid inside the tagged commit.
