@@ -1,0 +1,39 @@
+# Self-assessment — PA#2
+
+Submitted by:
+
+- 23127303 - Hồ Tấn Quốc
+- 23127499 - Lê Huy Toàn
+- 23127510 - Phùng Ngọc Tuấn
+
+**Total we claim: 96 / 100.**
+
+| #   | Rubric criterion            | Max | Claimed | Evidence and reason                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| --- | --------------------------- | --: | ------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | Rules file                  |  15 |      15 | [AGENTS.md](AGENTS.md) has the four required sections and links four rules to real failures in [AI-LOG.md](AI-LOG.md). A team member revised the assistant's draft in [commit `e8a3806`](https://github.com/NTTH7419/travel-planner/commit/e8a3806).                                                                                                                                                                                                                                                                                             |
+| 2   | Permissions and secrets     |  10 |       8 | [docs/permissions.md](docs/permissions.md) defines allowed, ask-first and never tiers; [.env.example](.env.example) lists the only variable read by the app; the [history scan](docs/permissions.md#secrets) reports no leaks. [README.md](README.md#model-spending-cap) says no provider or spending cap has been set, so no cap credit is claimed.                                                                                                                                                                                             |
+| 3   | One command for every check |  10 |      10 | [README.md](README.md#development), [package.json](package.json) and [CI](.github/workflows/ci.yml) use the same four commands, and each one can fail: `npm test` no longer passes with no tests ([PR #8](https://github.com/NTTH7419/travel-planner/pull/8)). [AI-LOG.md](AI-LOG.md#2026-11-21--pa2-harness-and-ci) records a successful fresh-clone check.                                                                                                                                                                                     |
+| 4   | CI that blocks a merge      |  20 |      20 | [Branch-protection screenshot](docs/evidence/branch-protection.jpeg) and [quality-gate record](docs/evidence/quality-gate.md); [PR #1](https://github.com/NTTH7419/travel-planner/pull/1) went [red](https://github.com/NTTH7419/travel-planner/actions/runs/44913877745) on required Lint, then [green](https://github.com/NTTH7419/travel-planner/actions/runs/44913976220) after the [source fix](https://github.com/NTTH7419/travel-planner/commit/a6f9b1f764f436884caf7d5eb7dd7a9d5ef86932).                                                |
+| 5   | Contract of one endpoint    |  25 |      24 | [Save Plan contract](docs/contract/save-plan.md) specifies bearer-token ownership, request and response fields, all problem types, idempotency, save effects, versions and examples. The in-memory PA#2 limits are stated in its test-data section.                                                                                                                                                                                                                                                                                              |
+| 6   | Contract tests that bite    |  15 |      14 | [Contract tests](tests/) run in the required `Tests` job and cover success, the ownership rule (404 and 403 as the contract names them), idempotency, and eight of the nine problem types, checking `type` and `Content-Type`, not status alone. [PR #5](https://github.com/NTTH7419/travel-planner/pull/5) broke the code, not the tests, and the [Tests job went red](https://github.com/NTTH7419/travel-planner/actions/runs/45540633293). One point off: no test triggers `500 internal`, which cannot be caused from outside this endpoint. |
+| 7   | AI-LOG.md                   |   5 |       5 | [AI-LOG.md](AI-LOG.md) names tools and roles and records concrete Changed and Rejected decisions, including the CRLF fresh-clone failure and an over-specified contract test.                                                                                                                                                                                                                                                                                                                                                                    |
+
+## What we did not manage
+
+- We have not selected a model provider or model, created a model API key, or
+  set a provider spending cap. PA#2 makes no model call.
+- We have no test that forces the contract's `500 internal` response. The other
+  eight problem types are exercised, and the deliberate contract break is
+  evidenced by PR #5.
+
+## Submission items still open
+
+- [PR #7](https://github.com/NTTH7419/travel-planner/pull/7) contains this
+  report and has [four green CI jobs](https://github.com/NTTH7419/travel-planner/actions/runs/45770033601),
+  but it has not been reviewed or merged into `main`.
+- The `pa2` tag does not exist yet. The link in [PA2.md](PA2.md) currently opens
+  a filtered workflow page, not an actual CI run for a tagged commit. Replace
+  it with the specific successful run after tagging the final merged commit.
+- The submission zip still needs to be created with the repository's `.git`
+  directory. With the current claimed score, its required name is
+  `23127303-23127499-23127510_96.zip`.
