@@ -6,9 +6,10 @@
 | Protected `main` settings           | [Branch-protection screenshot](docs/evidence/branch-protection.jpeg)                                                                                                                                                                                                                                    |
 | Pull request blocked by a red check | [PR #1](https://github.com/NTTH7419/travel-planner/pull/1), [failing commit](https://github.com/NTTH7419/travel-planner/commit/1505ae02c12b50129c52d3cecf20cc3e8b6d7624), and [red Lint run](https://github.com/NTTH7419/travel-planner/actions/runs/44913877745)                                       |
 | Same pull request after the fix     | [PR #1](https://github.com/NTTH7419/travel-planner/pull/1), [fixing commit](https://github.com/NTTH7419/travel-planner/commit/a6f9b1f764f436884caf7d5eb7dd7a9d5ef86932), and [green CI run](https://github.com/NTTH7419/travel-planner/actions/runs/44913976220)                                        |
-| CI run for the `pa2` tag            | [CI runs for the `pa2` tag](https://github.com/NTTH7419/travel-planner/actions/workflows/ci.yml?query=branch%3Apa2): all four jobs on the tagged commit                                                                                                                                                 |
+| CI run for the `pa2` tag            | [Successful CI run for the `pa2` tag](https://github.com/NTTH7419/travel-planner/actions/runs/45836747526): Lint, Format check, Type check and Tests passed on commit [`71675d5`](https://github.com/NTTH7419/travel-planner/commit/71675d540a0703d09a865b956176ed8970b69014)                           |
 | Deliberate contract break           | [PR #5](https://github.com/NTTH7419/travel-planner/pull/5), [breaking commit](https://github.com/NTTH7419/travel-planner/commit/cb96e7e03f7d7f6bf95867825d2c68d5a249294b), and [red Tests run](https://github.com/NTTH7419/travel-planner/actions/runs/45540633293). The PR was closed without merging. |
 
 The [quality-gate record](docs/evidence/quality-gate.md) explains the
-red-to-green CI demonstration. The tag row links to the workflow's runs
-filtered by the `pa2` tag, so the link is valid inside the tagged commit.
+red-to-green CI demonstration. The direct CI run above was triggered by pushing the `pa2` tag. The tagged
+commit predates this link update, so its copy of this file retains the earlier
+workflow-filter link.
