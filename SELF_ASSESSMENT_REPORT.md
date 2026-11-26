@@ -26,14 +26,13 @@ Submitted by:
   eight problem types are exercised, and the deliberate contract break is
   evidenced by PR #5.
 
-## Submission items still open
+## Submission status
 
-- [PR #7](https://github.com/NTTH7419/travel-planner/pull/7) contains this
-  report and has [four green CI jobs](https://github.com/NTTH7419/travel-planner/actions/runs/45770033601),
-  but it has not been reviewed or merged into `main`.
-- The `pa2` tag does not exist yet. The link in [PA2.md](PA2.md) currently opens
-  a filtered workflow page, not an actual CI run for a tagged commit. Replace
-  it with the specific successful run after tagging the final merged commit.
-- The submission zip still needs to be created with the repository's `.git`
-  directory. With the current claimed score, its required name is
+- [PR #7](https://github.com/NTTH7419/travel-planner/pull/7) was reviewed and
+  merged into `main` as [commit `71675d5`](https://github.com/NTTH7419/travel-planner/commit/71675d540a0703d09a865b956176ed8970b69014).
+- The [`pa2` tag](https://github.com/NTTH7419/travel-planner/tree/pa2) points to
+  that commit. Its [tag-triggered CI run](https://github.com/NTTH7419/travel-planner/actions/runs/45836747526)
+  passed all four required jobs.
+- The submission zip still needs to include the repository's `.git` directory.
+  With the current claimed score, its required name is
   `23127303-23127499-23127510_96.zip`.
