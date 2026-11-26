@@ -1,0 +1,38 @@
+# Keep routine checks in the sandbox: do not grant unsandboxed allow prefixes.
+prefix_rule(
+    pattern = ["npm", ["install", "i", "uninstall", "remove", "rm", "update", "up", "upgrade", "add"]],
+    decision = "prompt",
+    justification = "Ask before changing dependencies or the lockfile.",
+    match = ["npm install fastify", "npm uninstall fastify", "npm update"],
+    not_match = ["npm ci", "npm test"],
+)
+
+prefix_rule(
+    pattern = ["git", ["commit", "push"]],
+    decision = "prompt",
+    justification = "Ask before committing or pushing a feature branch.",
+    match = ["git commit -m docs", "git push origin pa2/example"],
+    not_match = ["git status", "git diff", "git log"],
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["--force", "--force-with-lease", "--force-if-includes", "-f"]],
+    decision = "forbidden",
+    justification = "Do not force-push; push a feature branch normally instead.",
+    match = ["git push --force origin topic", "git push --force-with-lease origin topic"],
+)
+
+prefix_rule(
+    pattern = ["git", "push", "origin", ["--force", "--force-with-lease", "--force-if-includes", "-f"]],
+    decision = "forbidden",
+    justification = "Do not force-push; push a feature branch normally instead.",
+    match = ["git push origin --force-with-lease topic", "git push origin -f topic"],
+)
+
+prefix_rule(
+    pattern = ["git", "push", "origin", ["main", "HEAD:main", "main:main", "refs/heads/main", "HEAD:refs/heads/main"]],
+    decision = "forbidden",
+    justification = "Do not push directly to main; open a pull request instead.",
+    match = ["git push origin main", "git push origin HEAD:main"],
+    not_match = ["git push origin pa2/example"],
+)
